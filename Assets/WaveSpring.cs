@@ -15,11 +15,4 @@ public class WaveSpring : MonoBehaviour
         spriteShapeController = ssc;
     }
 
-    void Update() { 
-        // if (spriteShapeController != null) {
-        //     Spline waterSpline = spriteShapeController.spline;
-        //     Vector3 wavePosition = waterSpline.GetPosition(waveIndex);
-        //     waterSpline.SetPosition(waveIndex, new Vector3(wavePosition.x, transform.localPosition.y, wavePosition.z));
-        // }
-    }
 }
