@@ -121,19 +121,16 @@ public class WaterShapeController : MonoBehaviour
         
         waterSpline.SetLeftTangent(index, leftTangent);
         waterSpline.SetRightTangent(index, rightTangent);
-
     }
     void FixedUpdate()
     {
         foreach(WaterSpring waterSpringComponent in springs) {
             waterSpringComponent.WaveSpringUpdate(springStiffness, dampening);
+            waterSpringComponent.WavePointUpdate();
         }
 
         UpdateSprings();
 
-        foreach(WaterSpring waterSpringComponent in springs) {
-            waterSpringComponent.WavePointUpdate();
-        }
     }
 
     private void UpdateSprings() { 

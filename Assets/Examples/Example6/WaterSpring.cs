@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Example5 {
+namespace Example6 {
     public class WaterSpring : MonoBehaviour
     {
+        private int waveIndex = 0;
+        [SerializeField]
+        private static SpriteShapeController spriteShapeController = null;
+        /////////////////
         [System.NonSerialized]
         public float velocity = 0;
         private float force = 0;
@@ -14,7 +18,11 @@ namespace Example5 {
         public float height = 0f;
         // normal height
         private float target_height = 0f;
-        public void Init() { 
+        public void Init(SpriteShapeController ssc) { 
+            var index = transform.GetSiblingIndex();
+            waveIndex = index+1;
+            spriteShapeController = ssc;
+
             velocity = 0;
             transform.localPosition = new Vector3(transform.localPosition.x, start_height, transform.localPosition.z);
             height = transform.localPosition.y;
@@ -31,6 +39,14 @@ namespace Example5 {
             var y = transform.localPosition.y;  
             transform.localPosition = new Vector3(transform.localPosition.x, y+velocity, transform.localPosition.z);
     
+        }
+        public void WavePointUpdate() { 
+            if (spriteShapeController != null) {
+                Spline waterSpline = spriteShapeController.spline;
+                Debug.Log(waveIndex);
+                Vector3 wavePosition = waterSpline.GetPosition(waveIndex);
+                waterSpline.SetPosition(waveIndex, new Vector3(wavePosition.x, transform.localPosition.y, wavePosition.z));
+            }
         }
         // For Example purposes
         private float start_height = 2f;

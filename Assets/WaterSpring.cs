@@ -12,7 +12,8 @@ public class WaterSpring : MonoBehaviour
     // normal height
     private float target_height = 0f;
     public Transform springTransform;
-    public static SpriteShapeController spriteShapeController = null;
+    [SerializeField]
+    private static SpriteShapeController spriteShapeController = null;
     private int waveIndex = 0;
     private List<WaterSpring> springs = new();
     private float resistance = 40f;

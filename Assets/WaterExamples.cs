@@ -41,7 +41,28 @@ public class WaterExamples : MonoBehaviour
     
     public void SetExample(int value) {
         example = value;
-        exampleValue.text = example.ToString();
+        String text = example.ToString();
+        switch(example) {
+            case 1:
+                text += " - creating a spring movement";
+            break;
+            case 2:
+                text += " - damping movement";
+            break;
+            case 3:
+                text += " - spreading movement between springs on impact";
+            break;
+            case 4:
+                text += " - creating a shape with sprite shape";
+            break;
+            case 5:
+                text += " - adding points dynamically to the sprite shape";
+            break;
+            case 6:
+                text += " - moving the sprite shape waves with the springs";
+            break;
+        }
+        exampleValue.text = text;
     }
 
     void Update() { 
