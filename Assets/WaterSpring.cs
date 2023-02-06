@@ -28,13 +28,13 @@ public class WaterSpring : MonoBehaviour
     }
     // with dampening
     // adding the dampening to the force
-    public void WaveSpringUpdate(float spring_constant, float dampening) { 
+    public void WaveSpringUpdate(float spring_stiffness, float dampening) { 
         height = transform.localPosition.y;
         // maximum extension
         var x = height - target_height;
         var loss = -dampening * velocity;
 
-        force = - spring_constant * x + loss;
+        force = - spring_stiffness * x + loss;
         velocity += force;
         var y = transform.localPosition.y;  
         transform.localPosition = new Vector3(transform.localPosition.x, y+velocity, transform.localPosition.z);

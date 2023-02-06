@@ -20,8 +20,11 @@ public class WaterShapeController : MonoBehaviour
     [Range(1, 100)]
     private int wavesCount;
     private List<WaterSpring> springs = new();
-    public float k = 0.1f;
-    public float d = 0.03f;
+    // How stiff should our spring be constnat
+    public float spring_stiffness = 0.1f;
+    // Slowing the movement over time
+    public float dampening = 0.03f;
+    // How much to spread to the other springs
     public float spread = 0.006f;
 
     void Start() { 
@@ -126,7 +129,7 @@ public class WaterShapeController : MonoBehaviour
     void FixedUpdate()
     {
         foreach(WaterSpring waterSpringComponent in springs) {
-            waterSpringComponent.WaveSpringUpdate(k, d);
+            waterSpringComponent.WaveSpringUpdate(spring_stiffness, dampening);
         }
 
         UpdateSprings();

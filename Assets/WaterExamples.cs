@@ -1,0 +1,60 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Cinemachine;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class WaterExamples : MonoBehaviour
+{
+    [SerializeField]
+    private List<GameObject> Examples = new();
+
+    [SerializeField]
+    private TMP_Text exampleValue;
+
+    private int example = 0;
+    private bool start = false;
+
+
+    public void ResetPosition() {
+        SetExample(0);
+
+        foreach (GameObject e in Examples) {
+            e.active = false;
+        }
+
+        start = false;
+    }
+    public void Trigger() { 
+        if (example <= 0) {
+            return;
+        }
+        
+        start = true;
+
+        GameObject currentExample = Examples[example-1];
+        currentExample.active = true;
+    }
+    
+    public void SetExample(int value) {
+        example = value;
+        exampleValue.text = example.ToString();
+    }
+
+    void Update() { 
+        if (!start) {
+            return;
+        }
+    }
+
+    void FixedUpdate() { 
+        if (!start) {
+            return;
+        }
+    }
+
+
+}
