@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Example6 {
+namespace Example7 {
     public class WaterShapeController : MonoBehaviour
     {
         [SerializeField]
@@ -61,11 +61,12 @@ namespace Example6 {
                 float xPosition = waterTopLeftCorner.x + (spacingPerWave*i);
                 Vector3 wavePoint = new Vector3(xPosition, waterTopLeftCorner.y, waterTopLeftCorner.z);
                 waterSpline.InsertPointAt(index, wavePoint);
-                waterSpline.SetHeight(index, 0f);
+                waterSpline.SetHeight(index, 0.1f);
                 waterSpline.SetCorner(index, false);
+                //////////////
+                waterSpline.SetTangentMode(index, ShapeTangentMode.Continuous);
 
             }
-
             // loop through all the wave points
             // plus the both top left and right corners
             CreateSprings(waterSpline);
@@ -74,8 +75,11 @@ namespace Example6 {
         }
         private void CreateSprings(Spline waterSpline) { 
             springs = new();
+            
             for (int i = 0; i <= WavesCount+1; i++) {
                 int index = i + 1; 
+
+                Smoothen(waterSpline, index);
 
                 GameObject wavePoint = Instantiate(wavePointPref, wavePoints.transform, false);
                 wavePoint.transform.localPosition = waterSpline.GetPosition(index);
@@ -84,6 +88,31 @@ namespace Example6 {
                 waterSpring.Init(spriteShapeController);
                 springs.Add(waterSpring);
             }
+        }
+        
+        private void Smoothen(Spline waterSpline, int index)
+        {
+            Vector3 position = waterSpline.GetPosition(index);
+            Vector3 positionPrev = position;
+            Vector3 positionNext = position;
+            if (index > 1) {
+                positionPrev = waterSpline.GetPosition(index-1);
+            }
+            if (index - 1 <= WavesCount) {
+                positionNext = waterSpline.GetPosition(index+1);
+            }
+
+            Vector3 forward = gameObject.transform.forward;
+
+            float scale = Mathf.Min((positionNext - position).magnitude, (positionPrev - position).magnitude) * 0.33f;
+
+            Vector3 leftTangent = (positionPrev - position).normalized * scale;
+            Vector3 rightTangent = (positionNext - position).normalized * scale;
+
+            SplineUtility.CalculateTangents(position, positionPrev, positionNext, forward, scale, out rightTangent, out leftTangent);
+            
+            waterSpline.SetLeftTangent(index, leftTangent);
+            waterSpline.SetRightTangent(index, rightTangent);
         }
         private void UpdateSprings() { 
             int count = springs.Count;

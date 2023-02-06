@@ -35,7 +35,7 @@ namespace Example5 {
                 float xPosition = waterTopLeftCorner.x + (spacingPerWave*i);
                 Vector3 wavePoint = new Vector3(xPosition, waterTopLeftCorner.y, waterTopLeftCorner.z);
                 waterSpline.InsertPointAt(index, wavePoint);
-                waterSpline.SetHeight(index, 0.1f);
+                waterSpline.SetHeight(index, 0f);
                 waterSpline.SetCorner(index, false);
 
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Example6 {
+namespace Example9 {
     public class WaterSpring : MonoBehaviour
     {
         private int waveIndex = 0;
@@ -18,6 +18,7 @@ namespace Example6 {
         public float height = 0f;
         // normal height
         private float target_height = 0f;
+        private float resistance = 40f;
         public void Init(SpriteShapeController ssc) { 
             var index = transform.GetSiblingIndex();
             waveIndex = index+1;
@@ -45,6 +46,19 @@ namespace Example6 {
                 Debug.Log(waveIndex);
                 Vector3 wavePosition = waterSpline.GetPosition(waveIndex);
                 waterSpline.SetPosition(waveIndex, new Vector3(wavePosition.x, transform.localPosition.y, wavePosition.z));
+            }
+        }
+        // Adding a collider so we can detect the falling object
+        // Force send layers set to Nothing
+        // so we the circle springs do not interact with the falling object
+        // we only want to detect when they collide so we can trigger the impact
+        private void OnCollisionEnter2D(Collision2D other) {
+            if (other.gameObject.tag.Equals("FallingObject")) {
+                FallingObject fallingObject = other.gameObject.GetComponent<FallingObject>();
+                Rigidbody2D rb = fallingObject.rigidbody2D;
+                var speed = rb.velocity;
+
+                velocity += speed.y/resistance;
             }
         }
     }

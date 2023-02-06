@@ -61,6 +61,18 @@ public class WaterExamples : MonoBehaviour
             case 6:
                 text += " - moving the sprite shape waves with the springs";
             break;
+            case 7:
+                text += " - smooth waves";
+            break;
+            case 8:
+                text += " - update wave count";
+            break;
+            case 9:
+                text += " - create wave on impact";
+            break;
+            case 10:
+                text += " - Add buoyancy 2d";
+            break;
         }
         exampleValue.text = text;
     }

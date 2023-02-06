@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Example6 {
+namespace Example8 {
     public class WaterSpring : MonoBehaviour
     {
         private int waveIndex = 0;
