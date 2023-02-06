@@ -13,12 +13,12 @@ namespace Example1 {
         // normal height
         private float target_height = 0f;
         
-        public void WaveSpringUpdate(float spring_constant) { 
+        public void WaveSpringUpdate(float springStiffness) { 
             height = transform.localPosition.y;
             // maximum extension
             var x = height - target_height;
             
-            force = - spring_constant * x;
+            force = - springStiffness * x;
             velocity += force;
             var y = transform.localPosition.y;  
             transform.localPosition = new Vector3(transform.localPosition.x, y+velocity, transform.localPosition.z);

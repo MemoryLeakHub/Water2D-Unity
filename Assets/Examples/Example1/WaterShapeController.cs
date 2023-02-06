@@ -7,14 +7,14 @@ namespace Example1 {
     {
         // How stiff should our spring be constnat
         [SerializeField]
-        private float spring_stiffness = 0.1f;
+        private float springStiffness = 0.1f;
         [SerializeField]
         private List<WaterSpring> springs = new();
 
         void FixedUpdate()
         {
             foreach(WaterSpring waterSpringComponent in springs) {
-                waterSpringComponent.WaveSpringUpdate(spring_stiffness);
+                waterSpringComponent.WaveSpringUpdate(springStiffness);
             }
         }
     }

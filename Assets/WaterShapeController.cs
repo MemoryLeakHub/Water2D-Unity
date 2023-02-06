@@ -7,21 +7,20 @@ using UnityEngine.U2D;
 public class WaterShapeController : MonoBehaviour
 {
 
-    private int CornersPerSide = 2;
+    private int CorsnersCount = 2;
     [SerializeField]
     private SpriteShapeController spriteShapeController;
     [SerializeField]
     private GameObject wavePointPref;
     [SerializeField]
     private GameObject wavePoints;
-    public static int WavesCount { get; set; }
 
     [SerializeField]
     [Range(1, 100)]
-    private int wavesCount;
+    private int WavesCount;
     private List<WaterSpring> springs = new();
     // How stiff should our spring be constnat
-    public float spring_stiffness = 0.1f;
+    public float springStiffness = 0.1f;
     // Slowing the movement over time
     public float dampening = 0.03f;
     // How much to spread to the other springs
@@ -31,13 +30,12 @@ public class WaterShapeController : MonoBehaviour
        
     }
     void OnValidate() {
-        WavesCount = wavesCount;
         // Clean waterpoints 
         StartCoroutine(CreateWaves());
     }
     IEnumerator CreateWaves() {
         foreach (Transform child in wavePoints.transform) {
-                StartCoroutine(Destroy(child.gameObject));
+            StartCoroutine(Destroy(child.gameObject));
         }
         yield return null;
         SetWaves();
@@ -55,19 +53,18 @@ public class WaterShapeController : MonoBehaviour
         // Keep only the corners
         // Removing 1 point at a time we can remove only the 1st point
         // This means every time we remove 1st point the 2nd point becomes first
-        for (int i = CornersPerSide; i < waterPointsCount - CornersPerSide; i++) {
-            waterSpline.RemovePointAt(CornersPerSide);
+        for (int i = CorsnersCount; i < waterPointsCount - CorsnersCount; i++) {
+            waterSpline.RemovePointAt(CorsnersCount);
         }
 
         Vector3 waterTopLeftCorner = waterSpline.GetPosition(1);
         Vector3 waterTopRightCorner = waterSpline.GetPosition(2);
         float waterWidth = waterTopRightCorner.x - waterTopLeftCorner.x;
-        Debug.Log("waterWidth : " + waterWidth);
 
         float spacingPerWave = waterWidth / (WavesCount+1);
         // Set new points for the waves
         for (int i = WavesCount; i > 0 ; i--) {
-            int index = CornersPerSide;
+            int index = CorsnersCount;
 
             float xPosition = waterTopLeftCorner.x + (spacingPerWave*i);
             Vector3 wavePoint = new Vector3(xPosition, waterTopLeftCorner.y, waterTopLeftCorner.z);
@@ -83,7 +80,7 @@ public class WaterShapeController : MonoBehaviour
         // plus the both top left and right corners
         
         springs = new();
-        for (int i = 0; i <= wavesCount+1; i++) {
+        for (int i = 0; i <= WavesCount+1; i++) {
             int index = i + 1; 
             
             Smoothen(waterSpline, index);
@@ -129,7 +126,7 @@ public class WaterShapeController : MonoBehaviour
     void FixedUpdate()
     {
         foreach(WaterSpring waterSpringComponent in springs) {
-            waterSpringComponent.WaveSpringUpdate(spring_stiffness, dampening);
+            waterSpringComponent.WaveSpringUpdate(springStiffness, dampening);
         }
 
         UpdateSprings();

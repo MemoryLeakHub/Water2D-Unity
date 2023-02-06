@@ -13,13 +13,13 @@ namespace Example3 {
         private float dampening = 0.03f;
         // How stiff should our spring be constnat
         [SerializeField]
-        private float spring_stiffness = 0.1f;
+        private float springStiffness = 0.1f;
         [SerializeField]
         private List<WaterSpring> springs = new();
         void FixedUpdate()
         {
             foreach(WaterSpring waterSpringComponent in springs) {
-                waterSpringComponent.WaveSpringUpdate(spring_stiffness, dampening);
+                waterSpringComponent.WaveSpringUpdate(springStiffness, dampening);
             }
 
             UpdateSprings();

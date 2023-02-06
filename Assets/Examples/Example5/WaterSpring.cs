@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Example3 {
+namespace Example5 {
     public class WaterSpring : MonoBehaviour
     {
         [System.NonSerialized]
