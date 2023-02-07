@@ -151,6 +151,9 @@ namespace Example9 {
             }
         }
         void OnValidate() {
+            if (!gameObject.active) {
+                return;
+            }
             // Clean waterpoints 
             StartCoroutine(CreateWaves());
         }

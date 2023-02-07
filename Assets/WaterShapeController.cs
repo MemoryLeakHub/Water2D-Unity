@@ -96,7 +96,7 @@ public class WaterShapeController : MonoBehaviour
             // waveSpring.Init(spriteShapeController);
         }
 
-        //Splash(8,0.5f);
+        //Splash(5,1f);
     }
     private void Smoothen(Spline waterSpline, int index)
     {

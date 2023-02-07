@@ -17,7 +17,7 @@ namespace Example1 {
             height = transform.localPosition.y;
             // maximum extension
             var x = height - target_height;
-            
+
             force = - springStiffness * x;
             velocity += force;
             var y = transform.localPosition.y;  
