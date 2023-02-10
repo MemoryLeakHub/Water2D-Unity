@@ -4014,7 +4014,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 18.650316, y: -306.25}
+  m_AnchoredPosition: {x: 18.650269, y: -306.25}
   m_SizeDelta: {x: -37.299366, y: -612.50006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &712529342
@@ -6738,7 +6738,6 @@ SpriteShapeRenderer:
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 2800000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   m_Sprites:
-  - {fileID: 21300000, guid: 0ae2b74b1edd14bb18dd7b65ae916a54, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
@@ -6748,8 +6747,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 5.5000005, y: -3.0000005, z: 0}
-    m_Extent: {x: 12.525002, y: 4.0250006, z: 0}
+    m_Center: {x: 5.500001, y: -3.0000005, z: 0}
+    m_Extent: {x: 12.500002, y: 4.0000005, z: 0}
   m_SpriteSortPoint: 0
 --- !u!114 &1331831862
 MonoBehaviour:
