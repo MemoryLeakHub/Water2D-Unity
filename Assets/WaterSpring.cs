@@ -13,7 +13,7 @@ public class WaterSpring : MonoBehaviour
     private float target_height = 0f;
     public Transform springTransform;
     [SerializeField]
-    private static SpriteShapeController spriteShapeController = null;
+    private SpriteShapeController spriteShapeController = null;
     private int waveIndex = 0;
     private List<WaterSpring> springs = new();
     private float resistance = 40f;
